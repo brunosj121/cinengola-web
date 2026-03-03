@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const API_KEY = process.env.TMDB_API_KEY
 const BASE_URL = process.env.TMDB_BASE_URL || "https://api.themoviedb.org/3"
 
@@ -30,5 +31,38 @@ export async function getFilme(id: string) {
 }
 
 export async function getSerie(id: string) {
-  return fetchFromTMDB(`/tv/${id}?append_to_response=credits`)
+  return fetchFromTMDB(`/tv/${id}?append_to_response=credits,videos`)
 }
+
+
+export async function getTrailerFilme(id: string) {
+  const data = await fetchFromTMDB(`/movie/${id}/videos`)
+
+  const trailer = data.results.find(
+    (video: any) =>
+      video.type === "Trailer" && video.site === "YouTube"
+  )
+
+  return trailer?.key || null
+}
+
+
+export function extractTrailer(data: any) {
+  const trailer = data.videos?.results?.find(
+    (video: any) =>
+      video.type === "Trailer" && video.site === "YouTube"
+  )
+
+  return trailer?.key || null
+}
+
+
+export async function searchFilmes(query: string) {
+  return fetchFromTMDB(`/search/movie?query=${encodeURIComponent(query)}`)
+}
+
+export async function searchSeries(query: string) {
+  return fetchFromTMDB(`/search/tv?query=${encodeURIComponent(query)}`)
+}
+
+
