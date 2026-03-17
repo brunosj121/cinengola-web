@@ -58,40 +58,51 @@ export default function SobrePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
 
-     <section className="relative h-screen w-full overflow-hidden bg-background">
-      {/* Imagem de fundo (tag img padrão) */}
-      <img
-        src="/images/PARA_SITE4.png"
-        alt="Fundo do cabeçalho - Bruno Sahuto José"
-        className="absolute inset-0 w-full h-full object-cover brightness-100 contrast-110 saturate-105"
-      />
+<section className="relative h-screen w-full overflow-hidden bg-background">
+  {/* Imagem de fundo (tag img padrão) */}
+  <img
+    src="/images/PARA_SITE4.png"
+    alt="Fundo do cabeçalho - Bruno Sahuto José"
+    className="
+      absolute inset-0 w-full h-full
+      md:object-cover
+      object-contain /* Em mobile, mostra a imagem completa sem cortes */
+      brightness-100 contrast-110 saturate-105
+    "
+    style={{
+      // Em mobile, a imagem fica centralizada e dimensionada para caber
+      objectPosition: 'center center'
+    }}
+  />
 
-      {/* Padrão de grelha sobreposto para textura */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+  {/* Overlay escuro para mobile (ajusta legibilidade) */}
+  <div className="absolute inset-0 bg-black/20 md:bg-transparent" />
 
-      {/* Gradiente escuro na base para destacar o texto */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+  {/* Padrão de grelha sobreposto para textura */}
+  <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
-      {/* Conteúdo alinhado à parte inferior (rodapé da imagem) */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 px-4 sm:px-10 pb-10 md:pb-16 lg:pb-20">
-        <div className="max-w-xl space-y-4">
-          {/* Título principal com gradiente vermelho */}
-          <h1 className="text-4xl sm:text-4xl lg:text-5xl font-black">
-            <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
-              Bruno Sahuto José
-            </span>
-          </h1>
+  {/* Gradiente escuro na base para destacar o texto */}
+  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
 
-          {/* Subtítulo com ícones */}
-          <p className="text-xl sm:text-1xl text-foreground/80 flex items-center gap-2 flex-wrap">
-            <Sparkles className="text-red-500" size={24} />
-            Desenvolvedor Full Stack
-            <Sparkles className="text-red-500" size={24} />
-          </p>
+  {/* Conteúdo alinhado à parte inferior (rodapé da imagem) */}
+  <div className="absolute bottom-0 left-0 right-0 z-10 px-4 sm:px-10 pb-8 md:pb-16 lg:pb-20">
+    <div className="max-w-xl space-y-3 md:space-y-4">
+      {/* Título principal com gradiente vermelho */}
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black">
+        <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
+          Bruno Sahuto José
+        </span>
+      </h1>
 
-        </div>
-      </div>
-    </section>
+      {/* Subtítulo com ícones */}
+      <p className="text-lg sm:text-xl text-foreground/80 flex items-center gap-2 flex-wrap">
+        <Sparkles className="text-red-500" size={20} />
+        Desenvolvedor Full Stack
+        <Sparkles className="text-red-500" size={20} />
+      </p>
+    </div>
+  </div>
+</section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
 
