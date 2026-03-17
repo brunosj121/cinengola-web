@@ -61,7 +61,7 @@ export default function SobrePage() {
      <section className="relative h-screen w-full overflow-hidden bg-background">
       {/* Imagem de fundo (tag img padrão) */}
       <img
-        src="/images/para_site4.jpg"
+        src="/images/PARA_SITE4.png"
         alt="Fundo do cabeçalho - Bruno Sahuto José"
         className="absolute inset-0 w-full h-full object-cover brightness-100 contrast-110 saturate-105"
       />
