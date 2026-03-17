@@ -59,49 +59,89 @@ export default function SobrePage() {
     <main className="min-h-screen bg-background text-foreground">
 
 <section className="relative h-screen w-full overflow-hidden bg-background">
-  {/* Imagem de fundo (tag img padrão) */}
-  <img
-    src="/images/PARA_SITE4.png"
-    alt="Fundo do cabeçalho - Bruno Sahuto José"
-    className="
-      absolute inset-0 w-full h-full
-      md:object-cover
-      object-contain /* Em mobile, mostra a imagem completa sem cortes */
-      brightness-100 contrast-110 saturate-105
-    "
-    style={{
-      // Em mobile, a imagem fica centralizada e dimensionada para caber
-      objectPosition: 'center center'
-    }}
-  />
+  {/* Container da imagem com efeitos de borda */}
+  <div className="absolute inset-0 md:inset-0">
+    {/* Imagem de fundo */}
+    <img
+      src="/images/PARA_SITE4.png"
+      alt="Fundo do cabeçalho - Bruno Sahuto José"
+      className="
+        absolute inset-0 w-full h-full
+        md:object-cover
+        object-cover /* Em mobile, mantém cover mas com bordas suaves */
+        brightness-100 contrast-110 saturate-105
+        scale-105 md:scale-100 /* Leve zoom em mobile para evitar bordas */
+      "
+      style={{
+        objectPosition: 'center 30%' /* Ajusta o foco da imagem */
+      }}
+    />
 
-  {/* Overlay escuro para mobile (ajusta legibilidade) */}
-  <div className="absolute inset-0 bg-black/20 md:bg-transparent" />
+    {/* Bordas ofuscadas (vignette) - apenas em mobile */}
+    <div className="
+      absolute inset-0
+      md:hidden
+      pointer-events-none
+      shadow-[inset_0_0_50px_rgba(0,0,0,0.8),inset_0_0_100px_rgba(0,0,0,0.5)]
+    " />
+    
+    {/* Gradiente radial nas bordas para efeito de desfoque suave */}
+    <div className="
+      absolute inset-0
+      md:hidden
+      bg-gradient-to-r from-background via-transparent to-background
+      opacity-60
+      pointer-events-none
+    " />
+    
+    {/* Gradiente superior/inferior para destacar texto */}
+    <div className="
+      absolute inset-0
+      bg-gradient-to-b from-background/30 via-transparent to-background/80
+      pointer-events-none
+    " />
+  </div>
 
-  {/* Padrão de grelha sobreposto para textura */}
-  <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+  {/* Padrão de grelha sobreposto para textura (mais subtil em mobile) */}
+  <div className="absolute inset-0 bg-grid-pattern opacity-5 md:opacity-10" />
 
-  {/* Gradiente escuro na base para destacar o texto */}
-  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-
-  {/* Conteúdo alinhado à parte inferior (rodapé da imagem) */}
-  <div className="absolute bottom-0 left-0 right-0 z-10 px-4 sm:px-10 pb-8 md:pb-16 lg:pb-20">
+  {/* Conteúdo alinhado à parte inferior */}
+  <div className="absolute bottom-0 left-0 right-0 z-20 px-6 sm:px-10 pb-8 md:pb-16 lg:pb-20">
     <div className="max-w-xl space-y-3 md:space-y-4">
-      {/* Título principal com gradiente vermelho */}
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black">
+      
+     
+      
+      {/* Título principal com sombra para legibilidade */}
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black drop-shadow-2xl">
         <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
           Bruno Sahuto José
         </span>
       </h1>
 
-      {/* Subtítulo com ícones */}
-      <p className="text-lg sm:text-xl text-foreground/80 flex items-center gap-2 flex-wrap">
+      {/* Subtítulo com ícones e fundo semi-transparente para destacar */}
+      <p className="
+        text-lg sm:text-xl text-foreground/90 
+        flex items-center gap-2 flex-wrap
+        bg-background/20 backdrop-blur-sm
+        px-4 py-2 rounded-full
+        inline-flex w-auto
+        border border-foreground/10
+        shadow-lg
+      ">
         <Sparkles className="text-red-500" size={20} />
         Desenvolvedor Full Stack
         <Sparkles className="text-red-500" size={20} />
       </p>
+      
+      {/* Descrição breve com fundo suave (opcional) */}
+      <p className="text-foreground/70 text-sm sm:text-base max-w-md mt-4 bg-background/10 backdrop-blur-sm p-3 rounded-lg border border-foreground/5">
+        Especialista em criar experiências digitais modernas, responsivas e de alto desempenho.
+      </p>
     </div>
   </div>
+
+  {/* Efeito de brilho sutil na borda inferior (opcional) */}
+  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-red-600/10 to-transparent pointer-events-none" />
 </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">

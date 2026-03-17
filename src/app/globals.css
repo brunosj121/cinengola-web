@@ -605,3 +605,43 @@ body {
     background-color: #0a0a0a; /* Cor de fundo para áreas vazias */
   }
 }
+
+/* Efeito de vinheta personalizado */
+.vignette-mobile {
+  position: relative;
+}
+
+.vignette-mobile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 50%, rgba(0,0,0,0.8) 150%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Desfoque nas bordas laterais */
+.edge-blur-mobile {
+  position: relative;
+}
+
+.edge-blur-mobile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    rgba(10,10,10,1) 0%, 
+    transparent 20%, 
+    transparent 80%, 
+    rgba(10,10,10,1) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+@media (min-width: 768px) {
+  .vignette-mobile::after,
+  .edge-blur-mobile::before {
+    display: none;
+  }
+}
