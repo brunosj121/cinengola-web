@@ -1,4 +1,33 @@
 @import "tailwindcss";
+/* Import da fonte Poppins */
+@import '@fontsource/poppins/300.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+
+/* Definição global da fonte */
+:root {
+  --font-spotify: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  font-family: var(--font-spotify);
+}
+
+/* Ajustes específicos para headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em; /* tracking-tight do Spotify */
+}
+
+/* Ajuste para textos normais */
+body {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 :root {
   --background: #ffffff;
@@ -219,4 +248,349 @@ body {
   background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
   linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+.image-zoom {
+  animation: slowZoom 20s infinite alternate ease-in-out;
+}
+
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+/* Forçar tema escuro em todo o site */
+:root {
+  color-scheme: dark !important;
+}
+
+/* Garantir que o fundo seja sempre escuro */
+html,
+body {
+  background-color: #0a0a0a !important; /* Ajuste para a cor do seu tema */
+  color: #ffffff !important; /* Texto claro */
+}
+
+/* Manter consistência em todos os elementos */
+* {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+@media (max-width: 768px) {
+  /* Aumenta área de toque para links e botões */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+  }
+  
+  /* Remove hover effects em mobile (melhora performance) */
+  .mobile-no-hover:hover {
+    transform: none !important;
+    background: transparent !important;
+  }
+  
+  /* Melhora legibilidade em telas pequenas */
+  .mobile-text-adjust {
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.5;
+  }
+  
+  /* Container com padding seguro para notches */
+  .mobile-safe-padding {
+    padding-left: env(safe-area-inset-left, 16px);
+    padding-right: env(safe-area-inset-right, 16px);
+  }
+  
+  /* Esconde elementos em mobile */
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  /* Mostra elementos apenas em mobile */
+  .mobile-only {
+    display: block !important;
+  }
+  
+  /* Grid de 2 colunas em mobile */
+  .mobile-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  /* Lista vertical em mobile */
+  .mobile-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Cards com bordas arredondadas em mobile */
+  .mobile-card {
+    border-radius: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Barra de rolagem horizontal suave em mobile */
+  .mobile-scroll-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding: 12px 16px;
+    margin: 0 -16px;
+  }
+  
+  .mobile-scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Fixo na parte inferior em mobile */
+  .mobile-bottom-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    background: var(--background);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Menu drawer que desliza de baixo */
+  .mobile-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: var(--background);
+    padding: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+  
+  .mobile-drawer.open {
+    transform: translateY(0);
+  }
+  
+  /* Header otimizado para mobile */
+  .mobile-header {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--background);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Navegação inferior (bottom navigation) */
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(64px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--background);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 40;
+  }
+  
+  /* Loading skeleton para mobile */
+  .mobile-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%
+    );
+    background-size: 200% 100%;
+    animation: mobile-shimmer 1.5s infinite;
+  }
+  
+  @keyframes mobile-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Modal mobile (tela cheia) */
+  .mobile-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--background);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+  
+  /* Grid responsivo para filmes em mobile */
+  .mobile-movie-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  /* Ajuste para telas muito pequenas (menos de 360px) */
+  @media (max-width: 360px) {
+    .mobile-movie-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .mobile-text-adjust {
+      font-size: 13px;
+    }
+  }
+  
+  /* Botão flutuante de ação (FAB) */
+  .mobile-fab {
+    position: fixed;
+    bottom: calc(80px + env(safe-area-inset-bottom));
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: var(--primary, #ef4444);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    z-index: 30;
+    transition: transform 0.2s;
+  }
+  
+  .mobile-fab:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Utilitários para desktop apenas */
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block !important;
+  }
+  
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Utilitários gerais de responsividade */
+.text-responsive {
+  font-size: clamp(14px, 4vw, 18px);
+}
+
+.padding-responsive {
+  padding: clamp(12px, 3vw, 24px);
+}
+
+.gap-responsive {
+  gap: clamp(8px, 2vw, 16px);
+}
+
+/* Safe area para todos os dispositivos */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Animações otimizadas para mobile */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Prevenir zoom indesejado em inputs no mobile */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Melhorar contraste em mobile com brilho do sol */
+@media (max-width: 768px) {
+  .mobile-high-contrast {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+
+/* globals.css */
+:root {
+  /* Forçar esquema de cores */
+  color-scheme: dark;
+  
+  /* Suas variáveis de tema escuro */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card-bg: #111111;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+/* Sobrescrever qualquer tentativa de tema claro */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark;
+    --background: #0a0a0a !important;
+    --foreground: #ededed !important;
+  }
+}
+
+html {
+  color-scheme: dark !important;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }

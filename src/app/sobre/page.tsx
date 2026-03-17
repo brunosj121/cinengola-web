@@ -57,29 +57,44 @@ export default function SobrePage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Header com gradiente vermelho/preto */}
-      <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden bg-gradient-to-b from-red-900/30 to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        
-        <div className="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-16">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-4">
-              <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
-                Bruno Sahuto José
-              </span>
-            </h1>
-            <p className="text-xl sm:text-2xl text-foreground/80 flex items-center gap-2">
-              <Sparkles className="text-red-500" size={24} />
-              Desenvolvedor Full Stack
-              <Sparkles className="text-red-500" size={24} />
-            </p>
-          </div>
+
+     <section className="relative h-screen w-full overflow-hidden bg-background">
+      {/* Imagem de fundo (tag img padrão) */}
+      <img
+        src="/images/para_site4.jpg"
+        alt="Fundo do cabeçalho - Bruno Sahuto José"
+        className="absolute inset-0 w-full h-full object-cover brightness-100 contrast-110 saturate-105"
+      />
+
+      {/* Padrão de grelha sobreposto para textura */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+
+      {/* Gradiente escuro na base para destacar o texto */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+
+      {/* Conteúdo alinhado à parte inferior (rodapé da imagem) */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 px-4 sm:px-10 pb-10 md:pb-16 lg:pb-20">
+        <div className="max-w-xl space-y-4">
+          {/* Título principal com gradiente vermelho */}
+          <h1 className="text-4xl sm:text-4xl lg:text-5xl font-black">
+            <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
+              Bruno Sahuto José
+            </span>
+          </h1>
+
+          {/* Subtítulo com ícones */}
+          <p className="text-xl sm:text-1xl text-foreground/80 flex items-center gap-2 flex-wrap">
+            <Sparkles className="text-red-500" size={24} />
+            Desenvolvedor Full Stack
+            <Sparkles className="text-red-500" size={24} />
+          </p>
+
         </div>
       </div>
+    </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
-        
+
         {/* Informações Pessoais */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-foreground/5 rounded-2xl p-6 border border-foreground/10">
@@ -131,10 +146,10 @@ export default function SobrePage() {
                   </span>
                   <span className="font-medium">{skill.name}</span>
                 </div>
-                
+
                 {/* Barra de progresso */}
                 <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-gradient-to-r from-red-600 to-red-800 rounded-full transition-all duration-500 group-hover:shadow-lg group-hover:shadow-red-600/30"
                     style={{ width: `${skill.level}%` }}
                   />
@@ -161,7 +176,7 @@ export default function SobrePage() {
                 className="relative bg-foreground/5 p-6 rounded-xl border border-foreground/10 hover:border-red-600/50 transition-all duration-300 group"
               >
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-600 to-red-800 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                
+
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   <span className="text-red-500 font-mono text-sm px-3 py-1 bg-red-600/10 rounded-full">
                     {exp.year}
@@ -245,18 +260,18 @@ export default function SobrePage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { 
-                title: "Performance", 
+              {
+                title: "Performance",
                 icon: <Rocket className="w-8 h-8" />,
                 description: "Otimização de carregamento e renderização"
               },
-              { 
-                title: "Arquitetura Moderna", 
+              {
+                title: "Arquitetura Moderna",
                 icon: <Database className="w-8 h-8" />,
                 description: "Server Components e App Router"
               },
-              { 
-                title: "UX Cinematográfica", 
+              {
+                title: "UX Cinematográfica",
                 icon: <Star className="w-8 h-8" />,
                 description: "Experiência inspirada em streaming"
               },
@@ -307,3 +322,4 @@ export default function SobrePage() {
     </main>
   );
 }
+

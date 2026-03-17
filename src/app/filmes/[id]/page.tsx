@@ -26,40 +26,41 @@ export default async function FilmeDetalhe({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Hero section com backdrop */}
-      <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-        {/* Imagem de fundo (backdrop) */}
-        {filme.backdrop_path && (
-          <div className="absolute inset-0">
-            <MovieImage
-              src={filme.backdrop_path}
-              alt={filme.title}
-              width={1920}
-              height={1080}
-              className="object-cover opacity-30"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
-          </div>
-        )}
+     {/* Hero section com backdrop */}
+<div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+  {/* Imagem de fundo (backdrop) */}
+  {filme.backdrop_path && (
+    <div className="absolute inset-0">
+      <MovieImage
+        src={filme.backdrop_path}
+        alt={filme.title}
+        width={1920}
+        height={1080}
+        className="object-cover opacity-30"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
+    </div>
+  )}
 
-        {/* Conteúdo do hero */}
-        <div className="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-16">
-          <div className="flex flex-col md:flex-row gap-8 items-end">
-            {/* Poster */}
-            <div className="hidden md:block w-64 lg:w-80 rounded-2xl overflow-hidden shadow-2xl transform translate-y-12">
-              <MovieImage
-                src={filme.poster_path}
-                alt={filme.title}
-                width={500}
-                height={750}
-                className="object-cover"
-                priority
-              />
-            </div>
+  {/* Conteúdo do hero */}
+  <div className="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-16">
+    <div className="flex flex-col md:flex-row gap-8 items-end">
+      {/* Poster */}
+      <div className="hidden md:block w-64 lg:w-80 rounded-2xl overflow-hidden shadow-2xl transform translate-y-12 relative group">
+        <MovieImage
+          src={filme.poster_path}
+          alt={filme.title}
+          width={500}
+          height={750}
+          className="object-cover"
+          priority
+        />
+       
+      </div>
 
-            {/* Informações do filme */}
+ {/* Informações do filme */}
             <div className="flex-1 space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 {filme.title}
@@ -125,9 +126,11 @@ export default async function FilmeDetalhe({ params }: PageProps) {
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+
+
+    </div>
+  </div>
+</div>
 
       {/* Conteúdo principal */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -259,4 +262,14 @@ export default async function FilmeDetalhe({ params }: PageProps) {
       </div>
     </main>
   )
+}
+
+export const metadata = {
+  title: 'CineNgola - Filme',
+  description: 'Descubra os melhores filmes e séries em Angola. Streaming com curadoria especial para você.',
+  openGraph: {
+    title: 'CineNgola',
+    description: 'Streaming de filmes ',
+    type: 'website',
+  }
 }

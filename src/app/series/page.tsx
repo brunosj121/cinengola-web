@@ -163,11 +163,7 @@ export default function TVPage() {
     ">
                   Séries Populares
                 </h1>
-                {totalResults && (
-                  <p className="text-sm text-foreground/50 mt-0.5 text-right">
-                    {totalResults.toLocaleString()} séries
-                  </p>
-                )}
+
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import About from "../components/About"
 import Footer from "../components/Footer"
 import SerieRow from "../components/SerieRow"
 import { fetchFromTMDB } from "../lib/tmdb"
+import NetworkCarousel from "../components/NetworkCarousel"
 
 export default async function Home() {
   const popular = await fetchFromTMDB("/movie/popular")
@@ -19,12 +20,9 @@ export default async function Home() {
 
       <MovieRow title="🔥 Trending" movies={trending.results} />
       <MovieRow title="🎬 Filmes Populares" movies={popular.results} />
-
-      <SerieRow
-        title=" Séries em Alta"
-        series={tv.results}
-      />
-
+      <NetworkCarousel />
+      <SerieRow title="📺 Séries em Alta" series={tv.results} />
+      
       <DownloadApp />
       <About />
       <Footer />
@@ -37,7 +35,7 @@ export const metadata = {
   description: 'Descubra os melhores filmes e séries em Angola. Streaming com curadoria especial para você.',
   openGraph: {
     title: 'CineNgola',
-    description: 'Streaming de filmes e séries em Angola',
+    description: 'Streaming de filmes e séries',
     type: 'website',
   }
 }

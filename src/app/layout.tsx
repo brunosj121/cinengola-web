@@ -23,9 +23,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Forçar tema escuro imediatamente
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                
+                // Sobrescrever matchMedia para sempre retornar tema escuro
+                const originalMatchMedia = window.matchMedia;
+                window.matchMedia = function(query) {
+                  if (query.includes('prefers-color-scheme')) {
+                    return {
+                      matches: query.includes('dark') ? true : false,
+                      media: query,
+                      onchange: null,
+                      addListener: function() {},
+                      removeListener: function() {},
+                      addEventListener: function() {},
+                      removeEventListener: function() {},
+                      dispatchEvent: function() { return false; },
+                    };
+                  }
+                  return originalMatchMedia.call(this, query);
+                };
+                
+                // Forçar color-scheme no estilo
+                const style = document.createElement('style');
+                style.innerHTML = \`
+                  :root { color-scheme: dark !important; }
+                  html { color-scheme: dark !important; }
+                \`;
+                document.head.appendChild(style);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>
